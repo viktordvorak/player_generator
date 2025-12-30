@@ -1,10 +1,14 @@
 package cz.dvorakv.service.impl
 
+import cz.dvorakv.constants.PlayerType
 import cz.dvorakv.dto.PlayerDto
 import cz.dvorakv.dao.PlayerRepository
+import cz.dvorakv.dao.filter.PlayerFilter
+import cz.dvorakv.dao.specification.PlayerSpecifications
 import cz.dvorakv.mapper.PlayerDetailMapper
 import cz.dvorakv.service.PlayerService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.jpa.domain.Specification
 import org.springframework.stereotype.Service
 
 /**
@@ -40,6 +44,16 @@ class PlayerServiceImpl : PlayerService {
 
     override fun getAllPlayers(): List<PlayerDto> {
         val entities = playerRepository.findAll() ?: error("Players not found")
+        return entities.map { mapper.mapToDto(it) }
+    }
+
+    override fun getSearchPlayers(filter: PlayerFilter): List<PlayerDto> {
+        val specification = Specification
+            .where(PlayerSpecifications.hasPlayerType(filter.playerType))
+            .and(PlayerSpecifications.isFootballPlayer(filter.footballPlayer))
+            .and(PlayerSpecifications.hasName(filter.name))
+
+        val entities = playerRepository.findAll(specification) ?: error("Players not found")
         return entities.map { mapper.mapToDto(it) }
     }
 

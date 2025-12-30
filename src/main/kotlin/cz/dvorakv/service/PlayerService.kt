@@ -1,5 +1,6 @@
 package cz.dvorakv.service
 
+import cz.dvorakv.dao.filter.PlayerFilter
 import cz.dvorakv.dto.PlayerDto
 
 /**
@@ -15,6 +16,8 @@ interface PlayerService {
     fun getPlayer(id: Long): PlayerDto
 
     fun getAllPlayers(): List<PlayerDto>
+
+    fun getSearchPlayers(filter: PlayerFilter): List<PlayerDto>
 
     fun removePlayer(id: Long): PlayerDto
 

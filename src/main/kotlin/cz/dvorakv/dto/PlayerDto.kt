@@ -50,9 +50,9 @@ class PlayerDto {
     @Schema(description = "Player is footballer")
     var footballPlayer: Boolean = false
 
-
+    @Schema(description = "Player summary")
     fun getOverallSummary(): Int {
-        return defense + offense + creativity + runningAbility
+        return defense + offense + creativity + runningAbility + if (footballPlayer) 5 else 0
     }
 
 }

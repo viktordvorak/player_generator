@@ -2,6 +2,8 @@ package cz.dvorakv.dao
 
 import cz.dvorakv.dao.entity.PlayerDetail
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor
+import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
 
 /**
@@ -9,6 +11,6 @@ import org.springframework.stereotype.Repository
  * @since 17.10.2025
  */
 @Repository
-interface PlayerRepository : JpaRepository<PlayerDetail, Long> {
+interface PlayerRepository : JpaRepository<PlayerDetail, Long>, JpaSpecificationExecutor<PlayerDetail> {
 
 }

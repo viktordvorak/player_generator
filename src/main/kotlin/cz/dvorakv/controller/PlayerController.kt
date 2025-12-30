@@ -1,5 +1,6 @@
 package cz.dvorakv.controller
 
+import cz.dvorakv.dao.filter.PlayerFilter
 import cz.dvorakv.service.PlayerService
 import cz.dvorakv.dto.PlayerDto
 import jakarta.validation.Valid
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
@@ -48,6 +50,11 @@ class PlayerController {
     @GetMapping("/player")
     fun getAllPlayers(): List<PlayerDto> {
         return playerService.getAllPlayers()
+    }
+
+    @GetMapping("/player/search")
+    fun searchPlayers(@ModelAttribute filter: PlayerFilter): List<PlayerDto> {
+        return playerService.getSearchPlayers(filter)
     }
 
 }

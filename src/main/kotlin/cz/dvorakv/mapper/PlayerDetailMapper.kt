@@ -39,6 +39,7 @@ object PlayerDetailMapper {
 
     fun mapToEntity(source: PlayerDto): PlayerDetail {
         return PlayerDetail().apply {
+            id = source.id
             name = source.name
             defense = source.defense!!
             creativity = source.creativity!!
