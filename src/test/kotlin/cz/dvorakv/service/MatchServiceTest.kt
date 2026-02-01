@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional
 import kotlin.random.Random
 
 @SpringBootTest
-//@Transactional
+@Transactional
 class MatchServiceTest {
 
     @Autowired
@@ -25,7 +25,6 @@ class MatchServiceTest {
 
     @BeforeEach
     fun setUp() {
-
         val players = playerService.getAllPlayers()
         val mid = players.size / 2
         playersHome = players.take(mid)

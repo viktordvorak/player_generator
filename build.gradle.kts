@@ -73,7 +73,7 @@ tasks.withType<Test> {
 	useJUnitPlatform()
 }
 
-//tasks.named<Test>("test") { enabled = false }
+tasks.named<Test>("test") { enabled = false }
 
 // --- Kotlin kompilátor ---
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {

@@ -7,9 +7,16 @@ import org.springframework.stereotype.Component
 @Component
 object TeamMapper {
 
-    fun toDto(entity: Team): TeamDto {
+    fun toDto(source: Team): TeamDto {
         return TeamDto().apply {
-            name = entity.name
+            name = source.name
+        }
+    }
+
+    fun toEntity(source: TeamDto): Team {
+        return Team().apply {
+            id = source.id
+            name = source.name
         }
     }
 

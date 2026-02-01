@@ -28,14 +28,14 @@ class TeamGeneratorServiceImpl : TeamGeneratorService {
                 println("✅ Teams generated successfully after $iteration iterations")
 
                 // vypočítání metrik
-                val overallA = teamA.sumOf { it.defense!! + it.creativity!! + it.offense!! + it.runningAbility!! }
-                val overallB = teamB.sumOf { it.defense!! + it.creativity!! + it.offense!! + it.runningAbility!! }
+                val overallA = teamA.sumOf { it.getOverallSummary() }
+                val overallB = teamB.sumOf { it.getOverallSummary() }
 
                 val categoryA = teamCategorySummary(teamA)
                 val categoryB = teamCategorySummary(teamB)
 
-                val playerTypeA = teamA.groupingBy { it.playerType!! }.eachCount()
-                val playerTypeB = teamB.groupingBy { it.playerType!! }.eachCount()
+                val playerTypeA = teamA.groupingBy { it.playerType }.eachCount()
+                val playerTypeB = teamB.groupingBy { it.playerType }.eachCount()
 
                 val footballCountA = teamA.count { it.footballPlayer == true }
                 val footballCountB = teamB.count { it.footballPlayer == true }

@@ -1,10 +1,15 @@
 package cz.dvorakv.service
 
-import cz.dvorakv.dao.entity.Match
 import cz.dvorakv.dto.MatchDto
 
 interface MatchService {
 
-    fun saveGeneratedMatch(result: MatchDto): MatchDto
+    fun saveGeneratedMatch(match: MatchDto): MatchDto
+
+    fun getAll(): List<MatchDto>
+
+    fun edit(match: MatchDto, id: Long): MatchDto
+
+    fun delete(id: Long): MatchDto
 
 }
